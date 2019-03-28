@@ -17,15 +17,12 @@ export class Counter extends Component {
 
   render () {
     return (
-      <div>
+      <>
         <h1>Counter</h1>
-
         <p>This is a simple example of a React component.</p>
-
         <p>Current count: <strong>{this.state.currentCount}</strong></p>
-
-        <button className="btn btn-primary" onClick={this.incrementCounter}>Increment</button>
-      </div>
+        <button className="bg-decathlon shadow-4 hover-bg-success white br3 pv3 ph6 pointer bn no-outline" onClick={this.incrementCounter}>Increment</button>
+      </>
     );
   }
 }
