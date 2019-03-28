@@ -5,6 +5,8 @@ VisualStudioVersion = 16.0.28721.148
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AmiliaPasPweur", "AmiliaPasPweur.csproj", "{895749F9-72B5-4C4E-A608-97965A55B624}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AmiliaPasPweur.Tests", "..\AmiliaPasPweur.Tests\AmiliaPasPweur.Tests.csproj", "{99C14089-48DD-421E-A51B-245C465F90DF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{895749F9-72B5-4C4E-A608-97965A55B624}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{895749F9-72B5-4C4E-A608-97965A55B624}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{895749F9-72B5-4C4E-A608-97965A55B624}.Release|Any CPU.Build.0 = Release|Any CPU
+		{99C14089-48DD-421E-A51B-245C465F90DF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{99C14089-48DD-421E-A51B-245C465F90DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{99C14089-48DD-421E-A51B-245C465F90DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{99C14089-48DD-421E-A51B-245C465F90DF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
