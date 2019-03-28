@@ -3,12 +3,16 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "tachyonsistas": "1.0.2",
+    "@sharegate/semantic-ui-sg": "3.2.1",
+    "animejs": "3.0.1",
+    "node-sass": "^4.11.0",
     "react": "^16.8.5",
     "react-dom": "^16.8.5",
     "react-router-dom": "^5.0.0",
     "react-scripts": "^2.1.8",
-    "rimraf": "^2.6.3"
+    "rimraf": "^2.6.3",
+    "semantic-ui-react": "0.86.0",
+    "tachyonsistas": "1.0.2"
   },
   "devDependencies": {
     "ajv": "^6.10.0",
