@@ -64,7 +64,7 @@ class QueryPart extends Component {
                 </div>
             </div>
             <div className="flex justify-center mt4">
-                <Button onClick={this.sendQuery} disabled={!sendQueryEnabled}>Next</Button>
+                <Button onClick={this.sendQuery} disabled={!sendQueryEnabled}>Search</Button>
             </div>
         </div>
       </>
