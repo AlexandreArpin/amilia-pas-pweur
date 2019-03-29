@@ -3,11 +3,11 @@ import "./scss/custom.scss";
 import React, { Component } from 'react';
 import { Route } from 'react-router';
 import { Layout } from './components/Layout';
-import { Home } from './components/Home';
-import { LoadingPart } from './components/parts/LoadingPart';
-import { NotifyMePart } from './components/parts/NotifyMePart';
-import { ResultPart } from './components/parts/ResultPart';
-import { QueryPart } from './components/parts/QueryPart';
+import Home from './components/Home';
+import LoadingPart from './components/parts/LoadingPart';
+import NotifyMePart from './components/parts/NotifyMePart';
+import ResultPart from './components/parts/ResultPart';
+import QueryPart from './components/parts/QueryPart';
 import { Admin } from './components/Admin';
 
 export default class App extends Component {

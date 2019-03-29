@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-export class ResultPart extends Component {
+export default class ResultPart extends Component {
 
   render () {
     return (
