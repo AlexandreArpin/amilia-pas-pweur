@@ -1,10 +1,19 @@
 import * as ActionTypes from "../actionTypes";
 
+// Steps:
+// 0 = Query
+// 1 = Results
+// 2 = NotifyMe
+
 const initialState = {
     isLoading: false,
     query: {
         sport: "",
         location: ""
+    },
+    notify: {
+        email: "",
+        success: false,
     },
     results: [],
     step: 0,
@@ -13,9 +22,15 @@ const initialState = {
 export default function sweatReducer(state = initialState, action) {
     switch (action.type) {
         case ActionTypes.SEND_QUERY:
-            return { ...state, sport: action.payload.sport, location: action.payload.location, isLoading: true};
-        case ActionTypes.SEND_QUERY_COMPLETED:
-            return { ...state, isLoading: false};
+            return { ...state, query: { ...state.query, sport: action.payload.sport, location: action.payload.location} , isLoading: true};
+        case ActionTypes.SEND_QUERY_SUCCESS:
+            return { ...state, results: action.payload.results, step: 1, isLoading: false};
+        case ActionTypes.SEND_QUERY_FAIL:
+            return { ...state, step: 2, isLoading: false};
+        case ActionTypes.NOTIFY_ME_SUCCESS:
+            return { ...state, notify: { success: true }};
+        case ActionTypes.RESET:
+            return initialState;
         default:
           return state
       }

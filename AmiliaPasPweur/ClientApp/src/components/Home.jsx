@@ -22,8 +22,8 @@ class Home extends Component {
       <>
         { isLoading && <LoadingPart /> }
         { (!isLoading && step === 0) && <QueryPart />}
-        { step === 1 && <ResultPart />}
-        { step === 2 && <NotifyMePart />}
+        { (!isLoading && step === 1) && <ResultPart />}
+        { (!isLoading && step === 2) && <NotifyMePart />}
       </>
     );
   }

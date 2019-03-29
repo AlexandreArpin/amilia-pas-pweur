@@ -1,5 +1,11 @@
 import * as ActionTypes from "../actionTypes";
 
+export function reset() {
+    return {
+        type: ActionTypes.RESET
+    };
+}
+
 export function sendQuery(sport, location) {
     return {
         type: ActionTypes.SEND_QUERY,
