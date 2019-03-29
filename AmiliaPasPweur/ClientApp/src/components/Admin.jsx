@@ -1,3 +1,5 @@
+/* global google */
+
 import React, { Component } from 'react';
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
@@ -48,21 +50,21 @@ class Admin extends Component {
     const sportsContainedInQueries = Array.from(new Set(queries.map(x => x.sport)));
 
     const sportsOptions = availableSports
-    .filter(x => sportsContainedInQueries.find(y => y === x.id))
-    .map(x => ({ key: x.id, text: x.name, value: x.id}))
-    .sort(function(a, b) {
-      var nameA = a.text.toUpperCase(); // ignore upper and lowercase
-      var nameB = b.text.toUpperCase(); // ignore upper and lowercase
-      if (nameA < nameB) {
-        return -1;
-      }
-      if (nameA > nameB) {
-        return 1;
-      }
-    
-      // names must be equal
-      return 0;
-    });
+      .filter(x => sportsContainedInQueries.find(y => y === x.id))
+      .map(x => ({ key: x.id, text: x.name, value: x.id }))
+      .sort(function (a, b) {
+        var nameA = a.text.toUpperCase(); // ignore upper and lowercase
+        var nameB = b.text.toUpperCase(); // ignore upper and lowercase
+        if (nameA < nameB) {
+          return -1;
+        }
+        if (nameA > nameB) {
+          return 1;
+        }
+
+        // names must be equal
+        return 0;
+      });
 
 
     const heatMapData = {
@@ -73,7 +75,9 @@ class Admin extends Component {
       }
     };
 
-    console.log("heatmap", heatMapData);
+    if (this._googleMap !== undefined) {
+      this._googleMap.heatmap.setData(heatMapData.positions.map(x => new google.maps.LatLng(x.lat, x.lng)));
+    }
 
     const apiKey = { key: 'AIzaSyADZ6SKjElEyIdZ7og8PzLEBZ6zLOAtPz8' }
 
