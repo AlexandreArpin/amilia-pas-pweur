@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import logo from '../assets/icone-blue.png';
 import { Link } from 'react-router-dom';
 
 export class NavMenu extends Component {
@@ -21,8 +22,9 @@ export class NavMenu extends Component {
 
   render () {
     return (
-      <header className="shadow-5 ma0 pa4 bg-yellowgram">
-          <div>
+      <header className="shadow-5 ma0 pa4">
+        <div className="flex items-center ">
+            <img src={logo} className="w6 h-auto mr6" alt=""/>
             <Link to="/" className="decathlon f7 lh-solid no-underline mr6 bb b--transparent hover-b--decathlon">Home</Link>
             <Link to="/query" className="decathlon f7 lh-solid no-underline mr6 bb b--transparent hover-b--decathlon">Query</Link>
             <Link to="/loading" className="decathlon f7 lh-solid no-underline mr6 bb b--transparent hover-b--decathlon">Loading</Link>

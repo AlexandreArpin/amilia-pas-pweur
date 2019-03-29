@@ -1,3 +1,5 @@
+@import "~tachyonsistas/css/tachyons.min.css";
+
 @import "~@sharegate/semantic-ui-sg/button.css";
 @import "~@sharegate/semantic-ui-sg/dropdown.css";
 @import "~@sharegate/semantic-ui-sg/search.css";
@@ -11,5 +13,4 @@ body {
     --primary-darker: var(--decathlon-darker);
     // fonts
     font-family: 'Roboto Condensed', Arial, Helvetica, sans-serif;
-    background-color: var(--primary-light);
 }

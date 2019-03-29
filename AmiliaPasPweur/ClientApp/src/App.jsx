@@ -1,4 +1,3 @@
-import 'tachyonsistas/css/tachyons.min.css'
 import "./scss/custom.scss";
 import React, { Component } from 'react';
 import { Route } from 'react-router';
