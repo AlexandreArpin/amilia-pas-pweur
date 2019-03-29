@@ -22,7 +22,7 @@ export class NavMenu extends Component {
 
   render () {
     return (
-      <header className="shadow-5 ma0 pa4">
+      <header className="shadow-5 ma0 pa4 bg-white">
         <div className="flex items-center ">
             <img src={logo} className="w6 h-auto mr6" alt=""/>
             <Link to="/" className="decathlon f7 lh-solid no-underline mr6 bb b--transparent hover-b--decathlon">Home</Link>

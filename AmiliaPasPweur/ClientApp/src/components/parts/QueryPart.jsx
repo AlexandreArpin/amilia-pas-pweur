@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Dropdown, Button } from "semantic-ui-react";
+import { Dropdown } from "semantic-ui-react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { sendQuery } from '../../actionCreators/sweatActionCreator'
@@ -44,17 +44,28 @@ class QueryPart extends Component {
     const longLat = new google.maps.LatLng(45.5017, 73.5673);
 
     return (
-      <div className="mt5">
-        <Dropdown
-            placeholder='Select Friend'
-            fluid
-            selection
-            options={languageOptions}
-        />
-
-        <Button primary onClick={() => this.props.sendQuery(this.props.sendQuery(sport, location))}>Next</Button>
-
-        <Geosuggest location={longLat} radius={500000} country={"CA"} onSuggestSelect={this.onSuggestSelect} />
+      <div className="">
+        <div className="image-holder">
+        </div>
+        <div className="bg-yellowgram pv4">
+            <div className="mw7 flex center">
+                <div className="w-50 pr3">
+                    <div className="flex">
+                        <Dropdown
+                            placeholder='Select Activity'
+                            fluid
+                            selection
+                            options={languageOptions}
+                        />
+                    </div>
+                </div>
+                <div className="w-50 pl3">
+                    <div className="">
+                        <Geosuggest location={longLat} radius={500000} country={"CA"} onSuggestSelect={this.onSuggestSelect} />
+                    </div>
+                </div>
+            </div>
+        </div>
       </div>
     );
   }
