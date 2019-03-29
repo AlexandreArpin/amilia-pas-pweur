@@ -51,8 +51,8 @@ class Admin extends Component {
     .filter(x => sportsContainedInQueries.find(y => y === x.id))
     .map(x => ({ key: x.id, text: x.name, value: x.id}))
     .sort(function(a, b) {
-      var nameA = a.name.toUpperCase(); // ignore upper and lowercase
-      var nameB = b.name.toUpperCase(); // ignore upper and lowercase
+      var nameA = a.text.toUpperCase(); // ignore upper and lowercase
+      var nameB = b.text.toUpperCase(); // ignore upper and lowercase
       if (nameA < nameB) {
         return -1;
       }
