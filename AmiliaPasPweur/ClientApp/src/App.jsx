@@ -7,7 +7,7 @@ import LoadingPart from './components/parts/LoadingPart';
 import NotifyMePart from './components/parts/NotifyMePart';
 import ResultPart from './components/parts/ResultPart';
 import QueryPart from './components/parts/QueryPart';
-import { Admin } from './components/Admin';
+import Admin from './components/Admin';
 
 export default class App extends Component {
   static displayName = App.name;
