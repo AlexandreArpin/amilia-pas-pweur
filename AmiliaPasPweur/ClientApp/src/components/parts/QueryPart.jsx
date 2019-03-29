@@ -59,7 +59,7 @@ class QueryPart extends Component {
                 </div>
                 <div className="w-50 pl3">
                     <div className="">
-                        <Geosuggest ref={el => this._geoSuggest = el} location={longLat} radius={500000} country={"CA"} onSuggestSelect={this.onSuggestSelect} />
+                        <Geosuggest location={longLat} radius={500000} country={"CA"} onSuggestSelect={this.onSuggestSelect} />
                     </div>
                 </div>
             </div>
