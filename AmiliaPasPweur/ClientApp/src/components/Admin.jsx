@@ -32,6 +32,7 @@ class Admin extends Component {
   render() {
     const { queries, notifications, isFetched } = this.props;
 
+    console.log(this.props);
     return (
       <div>
         <h1>Administration</h1>

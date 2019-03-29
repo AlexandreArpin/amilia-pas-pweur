@@ -8,7 +8,7 @@ function* fetchAdminData() {
     yield put({
         type: ActionTypes.FETCH_ADMIN_DATA_SUCCESS,
         payload: {
-            results: data
+            result: data
         }
     })
 }

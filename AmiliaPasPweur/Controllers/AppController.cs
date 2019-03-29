@@ -47,12 +47,34 @@ namespace AmiliaPasPweur.Controllers
             return this.Ok(filtered);
         }
         
-        [HttpGet("location-queries")]
+        [HttpGet("admin")]
         public async Task<IActionResult> LocationQueries()
             {
-                var docs = await this.mongoRepo.FindAllAsync<LocationQueryDocument>();
+                var queries = await this.mongoRepo.FindAllAsync<LocationQueryDocument>();
      
-                return this.Ok(docs);
+                return this.Ok(new
+                {
+                    queries = queries.Select(x =>
+                    new {
+                        sport = x.KeywordId,
+                        location = new
+                        {
+                            lng = x.Longitude,
+                            lat = x.Latitude
+                        },
+                        count = 0
+                    }),
+                    notifications = queries.Select(x =>
+                        new {
+                            sport = x.KeywordId,
+                            location = new
+                            {
+                                lng = x.Longitude,
+                                lat = x.Latitude
+                            },
+                            count = 0
+                        }),
+                });
             }
         }
 }

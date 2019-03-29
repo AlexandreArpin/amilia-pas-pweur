@@ -9,7 +9,7 @@ const initialState = {
 export default function sweatReducer(state = initialState, action) {
     switch (action.type) {
         case ActionTypes.FETCH_ADMIN_DATA_SUCCESS:
-            return { ...state, queries: action.payload.result.queries, notifications: action.payload.result.notifications, isLoading: false};
+            return { ...state, queries: action.payload.result.queries, notifications: action.payload.result.notifications, isFetched: true};
         default:
           return state
       }
