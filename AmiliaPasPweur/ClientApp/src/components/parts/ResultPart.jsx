@@ -13,17 +13,24 @@ class ResultPart extends Component {
 
   render() {
     const { results } = this.props;
-
+    console.log(results);
     return (
-      <div>
-        <h1>Congrats! Here are some results</h1>
-
-        <p>{results[0].fullName} - {results[0].telephone}</p>
-
-        <div>
-          <Button basic onClick={this.props.reset}>Start Again</Button>
+        <>
+      <div className="sorry image-holder"></div>
+      <div className="bg-yellowgram pv8">
+        <div className="center mw7">
+            <h1 className="ma0 pa0 mb4">Congrats! Here are some results</h1>
+            <div className="bg-white shadow-4 pa6 br3">
+                <h2 className="pa0 ma0 f4">{results[0].fullName}</h2>
+                <p className="pa0 ma0 f7">{results[0].address.address1} {results[0].address.address2}, {results[0].address.city} - {results[0].telephone}</p>
+                <em>{results[0].description}</em>
+            </div>
+            <div className="mt4">
+                <Button basic onClick={this.props.reset}>Start Again</Button>
+            </div>
         </div>
       </div>
+      </>
     );
   }
 }

@@ -37,20 +37,21 @@ class QueryPart extends Component {
 
     return (
       <>
-        <div className="image-holder relative">
+        <div className="image-holder home relative">
             <div className="center mw5">
                 <div className="logo-main">
                     <img src={logo} alt="" />
                 </div>
             </div>
         </div>
-            <div className="pv8 flex flex-column justify-center" Style="background-color: #ffea28;">
+            <div className="pv8 flex flex-column justify-center bg-yellowgram">
             <div className="mw7 flex w-100 center">
                 <div className="w-50 pr3">
                     <div className="flex">
                         <Dropdown
                             options={sportsOptions}
                             selection
+                            search
                             placeholder='Select Activity'
                             onChange={(event, data) => this.onSportSelect(data.value)}
                         />
