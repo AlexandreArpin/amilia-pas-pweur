@@ -21,6 +21,7 @@ body {
     --primary-dark: var(--decathlon-dark);
     --primary-darker: var(--decathlon-darker);
     --marine-light: #263350;
+    --yellowgram: #ffea28;
     // fonts
     font-family: 'Roboto Condensed', Arial, Helvetica, sans-serif;
     background-color: var(--decathlon);
@@ -44,6 +45,11 @@ body {
     border: 1px solid var(--cloud);
     width: 100%;
     outline: none;
+    color: var(--jet-dark);
+}
+
+::-webkit-input-placeholder {
+    color: var(--jet-dark);
 }
 
 .geosuggest__suggests {

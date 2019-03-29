@@ -44,7 +44,7 @@ class QueryPart extends Component {
                 </div>
             </div>
         </div>
-            <div className="pv8 flex flex-column justify-center" Style="background-color: #ffea28;">
+            <div className="pv8 flex flex-column justify-center bg-yellowgram">
             <div className="mw7 flex w-100 center">
                 <div className="w-50 pr3">
                     <div className="flex">

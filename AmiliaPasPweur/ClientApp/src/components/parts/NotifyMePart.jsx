@@ -3,7 +3,7 @@ import { Input, Button } from "semantic-ui-react";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { notifyMe } from '../../actionCreators/sweatActionCreator'
+import { notifyMe, reset } from '../../actionCreators/sweatActionCreator'
 
 class NotifyMePart extends Component {
 
@@ -13,6 +13,7 @@ class NotifyMePart extends Component {
         email: PropTypes.string.isRequired,
         success: PropTypes.bool.isRequired,
         notifyMe: PropTypes.func.isRequired,
+        reset: PropTypes.func.isRequired,
     };
 
     render() {
@@ -21,14 +22,17 @@ class NotifyMePart extends Component {
         return (
             <>
             <div className="sorry image-holder"></div>
-            <div className="pv8 flex flex-column justify-center" Style="background-color: #ffea28;">
+            <div className="pv8 flex flex-column justify-center bg-yellowgram">
                 <div className="center flex flex-column w-100 mw7">
                     <h1>Sorry bro</h1>
                     <Input fluid placeholder='Email'>
                         <input />
                     </Input>
-                    <div className="mt4">
-                        <Button onClick={() => this.props.notifyMe(sport, location, email)}>Notify Me</Button>
+                    <div className="mt4 flex">
+                        <div className="mr4">
+                            <Button onClick={() => this.props.notifyMe(sport, location, email)}>Notify Me</Button>
+                        </div>
+                        <Button basic onClick={this.props.reset}>Start Again</Button>
                     </div>
                     {success && <h1>GREAT SUCCESS YOU'RE ARE GOING TO BE NOTIFIED</h1>}
                 </div>
@@ -49,7 +53,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
     return {
-        notifyMe: bindActionCreators(notifyMe, dispatch)
+        notifyMe: bindActionCreators(notifyMe, dispatch),
+        reset: bindActionCreators(reset, dispatch)
     };
 }
 
