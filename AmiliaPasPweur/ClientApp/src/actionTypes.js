@@ -12,3 +12,5 @@ export const FETCH_SPORTS_SUCCESS = "sweat/FETCH_SPORTS_SUCCESS";
 export const NOTIFY_ME = "sweat/NOTIFY_ME";
 export const NOTIFY_ME_SUCCESS = "sweat/NOTIFY_ME_SUCCESS";
 
+export const FETCH_ADMIN_DATA = "admin/FETCH_ADMIN_DATA";
+export const FETCH_ADMIN_DATA_SUCCESS = "sweat/FETCH_ADMIN_DATA_SUCCESS";
