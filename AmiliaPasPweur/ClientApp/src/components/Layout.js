@@ -6,12 +6,12 @@ export class Layout extends Component {
 
   render () {
     return (
-      <div className="mw8 center pt6">
+      <>
         <NavMenu />
-        <div>
+        <div className="mw8 center">
           {this.props.children}
         </div>
-      </div>
+      </>
     );
   }
 }

@@ -22,11 +22,11 @@ export class NavMenu extends Component {
 
   render () {
     return (
-      <header>
+      <header className="shadow-4 ma0 pa4">
           <div>
-            <Link to="/" className="decathlon f7 lh-solid no-underline mr2 bb b--transparent hover-b--decathlon">AmiliaPasPweur</Link>
-            <Link to="/counter" className="decathlon f7 lh-solid no-underline mr2 bb b--transparent hover-b--decathlon">Counter</Link>
-            <Link to="/fetch-data" className="decathlon f7 lh-solid no-underline mr2 bb b--transparent hover-b--decathlon">Fetch</Link>
+            <Link to="/" className="decathlon f7 lh-solid no-underline mr6 bb b--transparent hover-b--decathlon">AmiliaPasPweur</Link>
+            <Link to="/counter" className="decathlon f7 lh-solid no-underline mr6 bb b--transparent hover-b--decathlon">Counter</Link>
+            <Link to="/fetch-data" className="decathlon f7 lh-solid no-underline mr6 bb b--transparent hover-b--decathlon">Fetch</Link>
           </div>
       </header>
     );
