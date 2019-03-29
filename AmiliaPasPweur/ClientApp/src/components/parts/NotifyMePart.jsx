@@ -1,23 +1,29 @@
+import { Button, Input } from "semantic-ui-react";
 import React, { Component } from 'react';
-import { Input, Button } from "semantic-ui-react";
+import { notifyMe, reset } from '../../actionCreators/sweatActionCreator'
+
+import PropTypes from "prop-types";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
-import PropTypes from "prop-types";
-import { notifyMe, reset } from '../../actionCreators/sweatActionCreator'
 
 class NotifyMePart extends Component {
 
     static propTypes = {
-        sport: PropTypes.string.isRequired,
-        location: PropTypes.string.isRequired,
-        email: PropTypes.string.isRequired,
+        // sport: PropTypes.string.isRequired,
+        // location: PropTypes.string.isRequired,
         success: PropTypes.bool.isRequired,
         notifyMe: PropTypes.func.isRequired,
         reset: PropTypes.func.isRequired,
     };
 
+    state = {
+        canNotify: false
+      }
+
     render() {
-        const { sport, location, email, success } = this.props;
+        const { success } = this.props;
+
+        const notifyEnabled = this.state.canNotify;
 
         return (
             <>
@@ -26,11 +32,13 @@ class NotifyMePart extends Component {
                 <div className="center flex flex-column w-100 mw7">
                     <h1>Sorry bro</h1>
                     <Input fluid placeholder='Email'>
-                        <input />
+                        <input onChange={(event) => {
+                            this.onEmailChanged(event.target.value)
+                        }}/>
                     </Input>
                     <div className="mt4 flex">
                         <div className="mr4">
-                            <Button onClick={() => this.props.notifyMe(sport, location, email)}>Notify Me</Button>
+                            <Button disabled={!notifyEnabled} onClick={() => this.notifyMe()}>Notify Me</Button>
                         </div>
                         <Button basic onClick={this.props.reset}>Start Again</Button>
                     </div>
@@ -40,14 +48,39 @@ class NotifyMePart extends Component {
             </>
         );
     }
+
+    validateEmail = (email) => {
+        var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return re.test(String(email).toLowerCase());
+    }
+
+    onEmailChanged = (value) => {
+        if(this.validateEmail(value)) {
+          this.setState({ 
+              email: value,
+              canNotify: true,
+         })
+        }
+        else {
+            this.setState({ 
+                canNotify: false,
+           })
+        }
+    }
+
+    notifyMe = () => {
+        if(this.state.email) {
+          this.props.notifyMe(this.props.sport, this.props.location, this.state.email);
+        }
+      }
 }
 
 function mapStateToProps(state) {
     return {
         sport: state.sweat.query.sport,
         location: state.sweat.query.location,
-        email: state.sweat.notify.email,
-        success: state.sweat.notify.success
+        success: state.sweat.notify.success,
+        canNotify: state.canNotify,
     };
 }
 
