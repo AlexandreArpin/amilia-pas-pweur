@@ -1,9 +1,18 @@
 @import "~tachyonsistas/css/tachyons.min.css";
-
 @import "~@sharegate/semantic-ui-sg/button.css";
+@import "~@sharegate/semantic-ui-sg/divider.css";
 @import "~@sharegate/semantic-ui-sg/dropdown.css";
-@import "~@sharegate/semantic-ui-sg/search.css";
+@import "~@sharegate/semantic-ui-sg/item.css";
+@import "~@sharegate/semantic-ui-sg/menu.css";
+@import "~@sharegate/semantic-ui-sg/transition.css";
 @import "~@sharegate/semantic-ui-sg/input.css";
+@import "~@sharegate/semantic-ui-sg/checkbox.css";
+@import "~@sharegate/semantic-ui-sg/search.css";
+@import "~@sharegate/semantic-ui-sg/loader.css";
+@import "~@sharegate/semantic-ui-sg/icon.css";
+@import "~@sharegate/semantic-ui-sg/popup.css";
+@import "~@sharegate/semantic-ui-sg/placeholder.css";
+@import "~@sharegate/semantic-ui-sg/progress.css";
 
 body {
     --primary: var(--decathlon);
