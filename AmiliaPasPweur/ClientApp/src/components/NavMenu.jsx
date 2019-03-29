@@ -23,9 +23,12 @@ export class NavMenu extends Component {
     return (
       <header className="shadow-4 ma0 pa4">
           <div>
-            <Link to="/" className="decathlon f7 lh-solid no-underline mr6 bb b--transparent hover-b--decathlon">AmiliaPasPweur</Link>
-            <Link to="/counter" className="decathlon f7 lh-solid no-underline mr6 bb b--transparent hover-b--decathlon">Counter</Link>
-            <Link to="/fetch-data" className="decathlon f7 lh-solid no-underline mr6 bb b--transparent hover-b--decathlon">Fetch</Link>
+            <Link to="/" className="decathlon f7 lh-solid no-underline mr6 bb b--transparent hover-b--decathlon">Home</Link>
+            <Link to="/query" className="decathlon f7 lh-solid no-underline mr6 bb b--transparent hover-b--decathlon">Query</Link>
+            <Link to="/loading" className="decathlon f7 lh-solid no-underline mr6 bb b--transparent hover-b--decathlon">Loading</Link>
+            <Link to="/result" className="decathlon f7 lh-solid no-underline mr6 bb b--transparent hover-b--decathlon">Result</Link>
+            <Link to="/notify-me" className="decathlon f7 lh-solid no-underline mr6 bb b--transparent hover-b--decathlon">Notify Me</Link>
+            <Link to="/admin" className="decathlon f7 lh-solid no-underline mr6 bb b--transparent hover-b--decathlon">Admin</Link>
           </div>
       </header>
     );
