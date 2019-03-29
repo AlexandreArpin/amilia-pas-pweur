@@ -29,6 +29,7 @@ class QueryPart extends Component {
     const { availableSports } = this.props;
 
     const sportsOptions = availableSports.map(x => ({ key: x.id, text: x.name, value: x.id}));
+    const sendQueryEnabled = this.state.selectedSport && this.state.selectedLocation
 
     // eslint-disable-next-line no-undef
     const longLat = new google.maps.LatLng(45.5017, 73.5673);
@@ -61,7 +62,7 @@ class QueryPart extends Component {
                 </div>
             </div>
             <div className="flex justify-center mt4">
-                <Button basic onClick={this.sendQuery}>Next</Button>
+                <Button basic onClick={this.sendQuery} disabled={!sendQueryEnabled}>Next</Button>
             </div>
         </div>
       </>
@@ -70,12 +71,14 @@ class QueryPart extends Component {
 
   onSportSelect = (value) => {
     if(value) {
+      console.debug("Selected Sport", value)
       this.setState({ selectedSport: value})
     }
   }
 
   onSuggestSelect = (suggest) => {
     if(suggest) {
+      console.debug("Selected Location", suggest.location)
       this.setState({ selectedLocation: suggest.location})
     }
   }
