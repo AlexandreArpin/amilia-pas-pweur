@@ -7,6 +7,10 @@ import * as ActionTypes from "../actionTypes";
 
 const initialState = {
     isLoading: false,
+    availableSports: {
+        isFetched: false,
+        sports:[]
+    },
     query: {
         sport: "",
         location: ""

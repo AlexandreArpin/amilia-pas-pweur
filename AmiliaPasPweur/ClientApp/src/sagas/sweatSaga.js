@@ -26,5 +26,6 @@ function* notifyMe(action) {
 
 export default function* sweatSagas() {
     yield takeEvery(ActionTypes.SEND_QUERY, sendQuery);
+    yield takeEvery(ActionTypes.FETCH_SPORTS, fetchSports);
     yield takeEvery(ActionTypes.NOTIFY_ME, notifyMe);
 }

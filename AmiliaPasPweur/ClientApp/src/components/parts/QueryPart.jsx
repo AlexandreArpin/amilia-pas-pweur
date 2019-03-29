@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Dropdown, Button } from "semantic-ui-react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { sendQuery } from '../../actionCreators/sweatActionCreator'
+import { sendQuery, fetchAvailableSports } from '../../actionCreators/sweatActionCreator'
 import { bindActionCreators } from "redux";
 import Geosuggest from 'react-geosuggest';
 
@@ -12,7 +12,16 @@ class QueryPart extends Component {
     sport: PropTypes.string.isRequired,
     location: PropTypes.string.isRequired,
     sendQuery: PropTypes.func.isRequired,
+    availableSports: PropTypes.array.isRequired,
+    fetchAvailableSports: PropTypes.func.isRequired,
+    areAvailableSportsFetched: PropTypes.bool.isRequired,
   };
+
+  componentDidMount() {
+    if(!this.props.areAvailableSportsFetched){
+      this.props.fetchAvailableSports()
+    }
+  }
 
   render() {
     const languageOptions = [
@@ -39,7 +48,10 @@ class QueryPart extends Component {
       { key: 'Vietnamese', text: 'Vietnamese', value: 'Vietnamese' },
     ]
 
-    const { sport, location } = this.props;
+    const { sport, location, availableSports } = this.props;
+    console.log("Available Sports", availableSports);
+
+
     // eslint-disable-next-line no-undef
     const longLat = new google.maps.LatLng(45.5017, 73.5673);
 
@@ -71,13 +83,15 @@ class QueryPart extends Component {
 function mapStateToProps(state) {
   return {
     sport: state.sweat.query.sport,
-    location: state.sweat.query.location
+    location: state.sweat.query.location,
+    availableSports: state.sweat.availableSports.sports
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    sendQuery: bindActionCreators(sendQuery, dispatch)
+    sendQuery: bindActionCreators(sendQuery, dispatch),
+    fetchAvailableSports: bindActionCreators(fetchAvailableSports, dispatch)
   };
 }
 
