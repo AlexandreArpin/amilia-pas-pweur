@@ -20,7 +20,7 @@ class Counter extends Component {
         <h1>Counter</h1>
         <p>This is a simple example of a React component.</p>
         <p>Current count: <strong>{currentCount}</strong></p>
-        <button className="bg-decathlon shadow-4 hover-bg-success white br3 pv3 ph6 pointer bn no-outline" onClick={() => setCounter(this.props.currentCount + 1)}>Increment</button>
+        <button className="bg-decathlon shadow-4 hover-bg-decathlon-dark white br3 pv3 ph6 pointer bn no-outline" onClick={() => setCounter(this.props.currentCount + 1)}>Increment</button>
       </>
     );
   }

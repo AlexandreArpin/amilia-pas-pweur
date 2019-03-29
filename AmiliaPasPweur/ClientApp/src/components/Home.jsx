@@ -14,7 +14,6 @@ class Home extends Component {
     isLoading: PropTypes.bool.isRequired
   };
 
-
   render () {
 
     const { step, isLoading } = this.props;
