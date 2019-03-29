@@ -12,6 +12,8 @@ class ResultPart extends Component {
   };
 
   renderActivity(result) {
+    const myDate = result.activities[0].StartDate;
+    const date = myDate.slice(0, 10);
     return <div className="bg-white shadow-4 pa6 br3 mb4">
     <h2 className="pa0 ma0 f4">{result.location.fullName}</h2>
     <p className="pa0 ma0 f7">{result.location.address.address1} {result.location.address.address2}, {result.location.address.city} - {result.location.telephone}</p>
@@ -22,7 +24,7 @@ class ResultPart extends Component {
             <img src={result.activities[0].PictureUrl} alt="" />
         </div>
         <div>
-            <p className="pa0 ma0 mb1"><strong>Start Date: </strong>{result.activities[0].StartDate}</p>
+            <p className="pa0 ma0 mb1"><strong>Start Date: {date}</strong>{}</p>
             <p className="pa0 ma0"><strong>Schedule: </strong>{result.activities[0].ScheduleSummary}</p>
             <a className="no-underline decathlon mt1 dib" href={result.activities[0].Url}>Visit</a>
         </div>
