@@ -35,7 +35,7 @@ export default function sweatReducer(state = initialState, action) {
         case ActionTypes.NOTIFY_ME_SUCCESS:
             return { ...state, notify: { success: true }};
         case ActionTypes.RESET:
-            return initialState;
+            return {...initialState, availableSports: state.availableSports};
         default:
           return state
       }

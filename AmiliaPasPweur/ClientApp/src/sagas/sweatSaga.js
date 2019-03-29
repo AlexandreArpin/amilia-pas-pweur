@@ -1,6 +1,6 @@
 import * as ActionTypes from "../actionTypes";
 
-import { call, delay, put, takeEvery } from "redux-saga/effects";
+import { call, put, takeEvery } from "redux-saga/effects";
 
 function* fetchAvailableSports() {
     const response = yield call(fetch, 'api/keywords');
