@@ -5,13 +5,23 @@ import { fetchAdminData } from '../actionCreators/adminActionCreator'
 import { bindActionCreators } from "redux";
 import LoadingPart from './parts/LoadingPart'
 import { Table } from 'semantic-ui-react'
+import GoogleMapReact from 'google-map-react'
 
 class Admin extends Component {
+  static defaultProps = {
+    center: {
+      lat: 45.54,
+      lng: -73.65
+    },
+    zoom: 14
+  }
   static propTypes = {
     fetchAdminData: PropTypes.func.isRequired,
     isFetched: PropTypes.bool.isRequired,
     queries: PropTypes.array.isRequired,
     notifications: PropTypes.array.isRequired,
+    center: PropTypes.object.isRequired,
+    zoom: PropTypes.number.isRequired,
   };
 
   componentDidMount() {
@@ -30,47 +40,39 @@ class Admin extends Component {
   }
 
   render() {
-    const { queries, notifications, isFetched } = this.props;
+    const { queries, isFetched } = this.props;
 
-    console.log(this.props);
+    const heatMapData = {
+      positions: queries.filter(x => x.sport === 2).map(x => ({ lat: x.location.lat, lng: x.location.lng })),
+      options: {
+        radius: 20,
+        opacity: 0.7,
+      }
+    };
+
+    const apiKey = {key: 'AIzaSyADZ6SKjElEyIdZ7og8PzLEBZ6zLOAtPz8'}
+
     return (
       <div>
         <h1>Administration</h1>
         {!isFetched && <LoadingPart />}
-        {isFetched &&
+        {
+          isFetched &&
           <>
-            <h2>Notifications</h2>
-            <Table celled padded>
-              <Table.Header>
-                <Table.Row>
-                  <Table.HeaderCell singleLine>Sport</Table.HeaderCell>
-                  <Table.HeaderCell>Location</Table.HeaderCell>
-                  <Table.HeaderCell>Count</Table.HeaderCell>
-                </Table.Row>
-              </Table.Header>
+            <div style={{ height: '75vh', width: '100%' }}>
+              <GoogleMapReact
+                ref={(el) => this._googleMap = el}
+                bootstrapURLKeys={apiKey}
+                defaultCenter={this.props.center}
+                defaultZoom={this.props.zoom}
+                heatmapLibrary={true}
+                heatmap={heatMapData}
+              ></GoogleMapReact>
+            </div>
 
-              <Table.Body>
-                {notifications.map(this.renderBodyRow)}
-              </Table.Body>
-            </Table>
-
-            <h2>Queries</h2>
-            <Table celled padded>
-              <Table.Header>
-                <Table.Row>
-                  <Table.HeaderCell singleLine>Sport</Table.HeaderCell>
-                  <Table.HeaderCell>Location</Table.HeaderCell>
-                  <Table.HeaderCell>Count</Table.HeaderCell>
-                </Table.Row>
-              </Table.Header>
-
-              <Table.Body>
-                {queries.map(this.renderBodyRow)}
-              </Table.Body>
-            </Table>
           </>
         }
-      </div>
+      </div >
     );
   }
 }

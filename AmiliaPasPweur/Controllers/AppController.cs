@@ -1,10 +1,12 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using AmiliaPasPweur.Services;
 using Microsoft.AspNetCore.Mvc;
 using MongoDB.Driver;
+using Newtonsoft.Json.Linq;
 
 namespace AmiliaPasPweur.Controllers
 {
@@ -29,28 +31,50 @@ namespace AmiliaPasPweur.Controllers
         [HttpGet("locations")]
         public async Task<IActionResult> Locations([FromQuery]int keywordId, [FromQuery]double lat, [FromQuery]double lng)
         {
-//            var mtl = (45, -73.5);
-
             var coords = (lat, lng);
-            
             var locations = await amiliaClient.GetLocations(coords, keywordId: keywordId);
-
             var filtered = locations.Where(x => x.Keywords.Any(y => y.Id == keywordId));
 
+            var locationActivities = new List<LocationActivitiesDto>();
+            foreach (var location in filtered)
+            {
+                var activities = await amiliaClient.GetActivities(location.Id, keywordId);
+                locationActivities.Add(new LocationActivitiesDto
+                {
+                    Location = location,
+                    Activities = JObject.Parse(activities.Content)["Items"] as JArray,
+                });
+            }
+            
             await this.mongoRepo.InsertOneAsync(new LocationQueryDocument
             {
                 KeywordId = keywordId,
                 Latitude = lat,
                 Longitude = lng
-            
             });
-            return this.Ok(filtered);
+            
+            return this.Ok(locationActivities);
+        }
+        
+        [HttpPost("notify-me")]
+        public async Task<IActionResult> NotifyMe([FromBody]NotifyMeDto notifyMe)
+        {
+            await this.mongoRepo.InsertOneAsync(new NotifyMeDocument
+            {
+                KeywordId = notifyMe.KeywordId,
+                Latitude = notifyMe.Lat,
+                Longitude = notifyMe.Lng,
+                Email = notifyMe.Email,
+            });
+     
+            return this.Ok();
         }
         
         [HttpGet("admin")]
         public async Task<IActionResult> LocationQueries()
             {
                 var queries = await this.mongoRepo.FindAllAsync<LocationQueryDocument>();
+                var notifications = await this.mongoRepo.FindAllAsync<NotifyMeDocument>();
      
                 return this.Ok(new
                 {
@@ -64,7 +88,7 @@ namespace AmiliaPasPweur.Controllers
                         },
                         count = 0
                     }),
-                    notifications = queries.Select(x =>
+                    notifications = notifications.Select(x =>
                         new {
                             sport = x.KeywordId,
                             location = new
@@ -77,4 +101,22 @@ namespace AmiliaPasPweur.Controllers
                 });
             }
         }
+
+    public class NotifyMeDto
+    {
+        public int KeywordId { get; set; }
+
+        public double Lng { get; set; }
+
+        public double Lat { get; set; }
+
+        public string Email { get; set; }
+    }
+    
+    public class LocationActivitiesDto
+    {
+        public Location Location { get; set; }
+        
+        public JArray Activities { get; set; }
+    }
 }
