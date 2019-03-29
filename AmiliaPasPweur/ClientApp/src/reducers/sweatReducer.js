@@ -4,7 +4,6 @@ import * as ActionTypes from "../actionTypes";
 // 0 = Query
 // 1 = Results
 // 2 = NotifyMe
-
 const initialState = {
     isLoading: false,
     availableSports: {
@@ -25,6 +24,8 @@ const initialState = {
 
 export default function sweatReducer(state = initialState, action) {
     switch (action.type) {
+        case ActionTypes.FETCH_SPORTS_SUCCESS:
+            return { ...state, availableSports: { isFetched: true, sports: action.payload.results}};
         case ActionTypes.SEND_QUERY:
             return { ...state, query: { ...state.query, sport: action.payload.sport, location: action.payload.location} , isLoading: true};
         case ActionTypes.SEND_QUERY_SUCCESS:

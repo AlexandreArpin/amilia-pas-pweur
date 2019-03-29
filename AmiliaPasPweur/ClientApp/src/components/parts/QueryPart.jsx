@@ -7,15 +7,17 @@ import { bindActionCreators } from "redux";
 import Geosuggest from 'react-geosuggest';
 
 class QueryPart extends Component {
-
   static propTypes = {
-    sport: PropTypes.string.isRequired,
-    location: PropTypes.string.isRequired,
     sendQuery: PropTypes.func.isRequired,
     availableSports: PropTypes.array.isRequired,
     fetchAvailableSports: PropTypes.func.isRequired,
     areAvailableSportsFetched: PropTypes.bool.isRequired,
   };
+
+  state = {
+    selectedSport: null,
+    selectedLocation: null
+  }
 
   componentDidMount() {
     if(!this.props.areAvailableSportsFetched){
@@ -24,33 +26,9 @@ class QueryPart extends Component {
   }
 
   render() {
-    const languageOptions = [
-      { key: 'Arabic', text: 'Arabic', value: 'Arabic' },
-      { key: 'Chinese', text: 'Chinese', value: 'Chinese' },
-      { key: 'Danish', text: 'Danish', value: 'Danish' },
-      { key: 'Dutch', text: 'Dutch', value: 'Dutch' },
-      { key: 'English', text: 'English', value: 'English' },
-      { key: 'French', text: 'French', value: 'French' },
-      { key: 'German', text: 'German', value: 'German' },
-      { key: 'Greek', text: 'Greek', value: 'Greek' },
-      { key: 'Hungarian', text: 'Hungarian', value: 'Hungarian' },
-      { key: 'Italian', text: 'Italian', value: 'Italian' },
-      { key: 'Japanese', text: 'Japanese', value: 'Japanese' },
-      { key: 'Korean', text: 'Korean', value: 'Korean' },
-      { key: 'Lithuanian', text: 'Lithuanian', value: 'Lithuanian' },
-      { key: 'Persian', text: 'Persian', value: 'Persian' },
-      { key: 'Polish', text: 'Polish', value: 'Polish' },
-      { key: 'Portuguese', text: 'Portuguese', value: 'Portuguese' },
-      { key: 'Russian', text: 'Russian', value: 'Russian' },
-      { key: 'Spanish', text: 'Spanish', value: 'Spanish' },
-      { key: 'Swedish', text: 'Swedish', value: 'Swedish' },
-      { key: 'Turkish', text: 'Turkish', value: 'Turkish' },
-      { key: 'Vietnamese', text: 'Vietnamese', value: 'Vietnamese' },
-    ]
+    const { availableSports } = this.props;
 
-    const { sport, location, availableSports } = this.props;
-    console.log("Available Sports", availableSports);
-
+    const sportsOptions = availableSports.map(x => ({ key: x.id, text: x.name, value: x.id}));
 
     // eslint-disable-next-line no-undef
     const longLat = new google.maps.LatLng(45.5017, 73.5673);
@@ -63,28 +41,42 @@ class QueryPart extends Component {
           floating
           labeled
           icon='soccer'
-          options={languageOptions}
+          options={sportsOptions}
           search
           text='Select sport'
+          onChange={(event, data) => this.onSportSelect(data.value)}
         />
 
-        <Button primary onClick={() => this.props.sendQuery(this.props.sendQuery(sport, location))}>Next</Button>
+        <Button primary onClick={this.sendQuery}>Next</Button>
 
         <Geosuggest location={longLat} radius={500000} country={"CA"} onSuggestSelect={this.onSuggestSelect} />
       </div>
     );
   }
 
-  onSuggestSelect(suggest) {
-    console.log(suggest);
+  onSportSelect = (value) => {
+    if(value) {
+      this.setState({ selectedSport: value})
+    }
+  }
+
+  onSuggestSelect = (suggest) => {
+    if(suggest) {
+      this.setState({ selectedLocation: suggest.location})
+    }
+  }
+
+  sendQuery = () => {
+    if(this.state.selectedSport && this.state.selectedLocation) {
+      this.props.sendQuery(this.state.selectedSport, this.state.selectedLocation);
+    }
   }
 }
 
 function mapStateToProps(state) {
   return {
-    sport: state.sweat.query.sport,
-    location: state.sweat.query.location,
-    availableSports: state.sweat.availableSports.sports
+    availableSports: state.sweat.availableSports.sports,
+    areAvailableSportsFetched: state.sweat.availableSports.isFetched,
   };
 }
 

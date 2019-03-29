@@ -1,5 +1,18 @@
 import * as ActionTypes from "../actionTypes";
-import { put, delay, takeEvery } from "redux-saga/effects";
+import { call, put, delay, takeEvery } from "redux-saga/effects";
+
+function* fetchAvailableSports() {
+    const response = yield call(fetch, 'api/keywords');
+    const data = yield call([response, response.json])
+
+    yield put({
+        type: ActionTypes.FETCH_SPORTS_SUCCESS,
+        payload: {
+            results: data
+        }
+    })
+}
+
 
 function* sendQuery(action) {
     const { sport, location } = action.payload;
@@ -26,6 +39,6 @@ function* notifyMe(action) {
 
 export default function* sweatSagas() {
     yield takeEvery(ActionTypes.SEND_QUERY, sendQuery);
-    yield takeEvery(ActionTypes.FETCH_SPORTS, fetchSports);
+    yield takeEvery(ActionTypes.FETCH_SPORTS, fetchAvailableSports);
     yield takeEvery(ActionTypes.NOTIFY_ME, notifyMe);
 }
