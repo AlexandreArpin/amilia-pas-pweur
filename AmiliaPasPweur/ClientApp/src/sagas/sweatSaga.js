@@ -43,15 +43,18 @@ function* sendQuery(action) {
 
 function* notifyMe(action) {
     const { sport, location, email } = action.payload;
-    const response = yield call(fetch, `api/notify-me`, {
+    yield call(fetch, `api/notify-me`, {
         method: 'POST',
         headers : {
             'Content-Type' :'application/json'
           },
+          body: JSON.stringify({
+              keywordId: sport,
+              lat: location.lat,
+              lng: location.lng,
+              email: email,
+          })
       });
-
-    
-    yield delay(1500);
 
     yield put({
         type: ActionTypes.NOTIFY_ME_SUCCESS
