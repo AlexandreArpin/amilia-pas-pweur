@@ -58,9 +58,13 @@ class QueryPart extends Component {
 
         <Button primary onClick={() => this.props.sendQuery(this.props.sendQuery(sport, location))}>Next</Button>
 
-        <Geosuggest location={longLat} radius={500000} country={"CA"}/>
+        <Geosuggest location={longLat} radius={500000} country={"CA"} onSuggestSelect={this.onSuggestSelect} />
       </div>
     );
+  }
+
+  onSuggestSelect(suggest) {
+    console.log(suggest);
   }
 }
 
