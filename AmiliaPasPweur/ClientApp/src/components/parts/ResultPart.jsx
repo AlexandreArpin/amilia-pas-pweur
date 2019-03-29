@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import logo from '../../assets/logo.png';
 import { bindActionCreators } from "redux";
 import { reset } from '../../actionCreators/sweatActionCreator'
 import PropTypes from "prop-types";
@@ -40,7 +41,13 @@ class ResultPart extends Component {
 
     return (
       <>
-      <div className="sorry image-holder"></div>
+      <div className="sorry image-holder relative">
+        <div className="center mw5">
+            <div className="logo-main">
+                <img src={logo} alt="" />
+            </div>
+        </div>
+        </div>
       <div className="bg-yellowgram pv8">
         <div className="center mw7">
             <h1 className="ma0 pa0 mb4">Awesome, we found some activities!</h1>
