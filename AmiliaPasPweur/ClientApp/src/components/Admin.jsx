@@ -44,12 +44,13 @@ class Admin extends Component {
     if (!this.props.areAvailableSportsFetched) {
       this.props.fetchAvailableSports()
     }
+
+    this._markers=[];
+    this._circles=[];
   }
 
   render() {
     const { queries, isFetched, availableSports, areAvailableSportsFetched } = this.props;
-
-    console.log("locations", this.props.locations);
 
     const sportsContainedInQueries = Array.from(new Set(queries.map(x => x.sport)));
 
@@ -84,6 +85,38 @@ class Admin extends Component {
     }
 
     const apiKey = { key: 'AIzaSyADZ6SKjElEyIdZ7og8PzLEBZ6zLOAtPz8' }
+
+    if(this._googleMap) {
+      for (var marker of this._markers) {
+        marker.setMap(null);
+      }
+      for (var circle of this._circles) {
+        circle.setMap(null);
+      }
+
+      this._markers = [];
+      this._circles = [];
+
+      for (var location of this.props.locations) {
+        console.log(location);
+        var newMarker = new google.maps.Marker({
+          map: this._googleMap.map_,
+          position: new google.maps.LatLng(location.location.address.latitude, location.location.address.longitude),
+          title: location.location.fullName
+        });
+        
+        // Add circle overlay and bind to marker
+        var newCircle = new google.maps.Circle({
+          map: this._googleMap.map_,
+          radius: 1000,    // 10 miles in metres
+          fillColor: '#AA0000'
+        });
+
+        newCircle.bindTo('center', newMarker, 'position');
+        this._markers.push(newMarker)
+        this._circles.push(newCircle)
+      }
+    }
 
     return (
       <div className="mw8 center">
@@ -143,6 +176,7 @@ function mapStateToProps(state) {
     notifications: state.admin.notifications,
     availableSports: state.sweat.availableSports.sports,
     areAvailableSportsFetched: state.sweat.availableSports.isFetched,
+    locations: state.admin.locations,
   };
 }
 
