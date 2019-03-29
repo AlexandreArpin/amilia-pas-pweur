@@ -17,14 +17,27 @@ function* fetchAvailableSports() {
 function* sendQuery(action) {
     const { sport, location } = action.payload;
     
-    yield delay(1500);
+    const response = yield call(fetch, `api/locations?keywordId=${sport}&lat=${location.lat}&lng=${location.lng}`);
+    const data = yield call([response, response.json])
 
-    yield put({
-        type: ActionTypes.SEND_QUERY_FAIL,
-        payload: {
-            results: []
-        }
-    })
+    console.debug("Send Query Result", data);
+
+    if(data.length > 0) {
+        yield put({
+            type: ActionTypes.SEND_QUERY_SUCCESS,
+            payload: {
+                results: data
+            }
+        })
+    }
+    else {
+        yield put({
+            type: ActionTypes.SEND_QUERY_FAIL,
+            payload: {
+                results: []
+            }
+        })
+    }
 }
 
 function* notifyMe(action) {
