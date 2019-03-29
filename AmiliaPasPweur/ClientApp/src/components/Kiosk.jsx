@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import logo from '../assets/logo.png';
 import LoadingPart from './parts/LoadingPart'
 import { Button } from "semantic-ui-react";
 import ResultPart from './parts/ResultPart'
@@ -36,8 +37,37 @@ class Kiosk extends Component {
         { isLoading && <LoadingPart /> }
         { (!isLoading && step === 0) && 
         <>
-          <Button onClick={() => this.props.sendQuery(57, { lat: 45.54, lng: -73.65})}>Yoga</Button>
-          <Button onClick={() => this.props.sendQuery(77, { lat: 45.54, lng: -73.65})}>Hockey</Button>
+            <div className="image-holder home relative">
+                <div className="center mw5">
+                    <div className="logo-main">
+                        <img src={logo} alt="" />
+                    </div>
+                </div>
+            </div>
+          <div className="mw7 center">
+            <div className="flex flex-wrap">
+                <div className="w-33">
+                    <img src="https://png.pngtree.com/svg/20150707/6da03e899e.png" onClick={() => this.props.sendQuery(174, { lat: 45.54, lng: -73.65 })} className="pointer" />
+                </div>
+                <div className="w-33">
+                    <img src="https://static.thenounproject.com/png/39414-200.png" onClick={() => this.props.sendQuery(53, { lat: 45.54, lng: -73.65 })} className="pointer"/>
+                </div>
+                <div className="w-33">
+                    <img src="https://www.shareicon.net/data/2016/02/19/721572_sport_512x512.png" onClick={() => this.props.sendQuery(1, { lat: 45.54, lng: -73.65 })} className="pointer" />
+                </div>
+            </div>
+                <div className="flex flex-wrap mt10">
+                <div className="w-33">
+                    <img src="https://static.thenounproject.com/png/43133-200.png" onClick={() => this.props.sendQuery(19, { lat: 45.54, lng: -73.65 })} className="pointer" />
+                </div>
+                <div className="w-33">
+                    <img src="http://cdn.onlinewebfonts.com/svg/img_531220.png" onClick={() => this.props.sendQuery(10, { lat: 45.54, lng: -73.65 })} className="pointer" />
+                </div>
+                <div className="w-33">
+                    <img src="http://simpleicon.com/wp-content/uploads/tennis.png" onClick={() => this.props.sendQuery(78, { lat: 45.54, lng: -73.65 })} className="pointer" />
+                </div>
+            </div>
+          </div>
         </>
         }
         { (!isLoading && step === 1) && <ResultPart />}
