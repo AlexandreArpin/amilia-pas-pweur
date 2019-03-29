@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { sendQuery } from '../../actionCreators/sweatActionCreator'
 import { bindActionCreators } from "redux";
+import Geosuggest from 'react-geosuggest';
 
 class QueryPart extends Component {
 
@@ -39,6 +40,8 @@ class QueryPart extends Component {
     ]
 
     const { sport, location } = this.props;
+    // eslint-disable-next-line no-undef
+    const longLat = new google.maps.LatLng(45.5017, 73.5673);
 
     return (
       <div className="mt5">
@@ -51,8 +54,13 @@ class QueryPart extends Component {
 
         <Button primary onClick={() => this.props.sendQuery(this.props.sendQuery(sport, location))}>Next</Button>
 
+        <Geosuggest location={longLat} radius={500000} country={"CA"} onSuggestSelect={this.onSuggestSelect} />
       </div>
     );
+  }
+
+  onSuggestSelect(suggest) {
+    console.log(suggest);
   }
 }
 
