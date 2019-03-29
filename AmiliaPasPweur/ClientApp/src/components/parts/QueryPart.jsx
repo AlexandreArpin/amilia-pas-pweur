@@ -41,17 +41,12 @@ class QueryPart extends Component {
             <div className="mw7 flex w-100 center">
                 <div className="w-50 pr3">
                     <div className="flex">
-                            <Dropdown
-                                button
-                                className='icon'
-                                floating
-                                labeled
-                                icon='soccer'
-                                options={sportsOptions}
-                                search
-                                text='Select sport'
-                                onChange={(event, data) => this.onSportSelect(data.value)}
-                            />
+                        <Dropdown
+                            options={sportsOptions}
+                            selection
+                            placeholder='Select Activity'
+                            onChange={(event, data) => this.onSportSelect(data.value)}
+                        />
                     </div>
                 </div>
                 <div className="w-50 pl3">
