@@ -2,8 +2,8 @@ import * as ActionTypes from "../actionTypes";
 
 const initialState = {
     isFetched: false,
-    queries: {},
-    notifications: {}
+    queries: [],
+    notifications: []
 };
 
 export default function sweatReducer(state = initialState, action) {
