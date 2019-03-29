@@ -1,5 +1,6 @@
 import * as ActionTypes from "../actionTypes";
-import { call, put, delay, takeEvery } from "redux-saga/effects";
+
+import { call, delay, put, takeEvery } from "redux-saga/effects";
 
 function* fetchAvailableSports() {
     const response = yield call(fetch, 'api/keywords');
@@ -42,6 +43,13 @@ function* sendQuery(action) {
 
 function* notifyMe(action) {
     const { sport, location, email } = action.payload;
+    const response = yield call(fetch, `api/notify-me`, {
+        method: 'POST',
+        headers : {
+            'Content-Type' :'application/json'
+          },
+      });
+
     
     yield delay(1500);
 
