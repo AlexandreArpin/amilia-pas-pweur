@@ -63,7 +63,7 @@ namespace AmiliaPasPweur.Services
             return new Keyword[0];
         }
         
-        public async Task<IRestResponse> GetActivities(int locationId)
+        public async Task<IRestResponse> GetActivities(int locationId, int keywordId)
         {
 //            https://www.amilia.com/api/v3/fr/locations/{
 //            id}/activities?showHidden=false&showCanc
@@ -73,6 +73,7 @@ namespace AmiliaPasPweur.Services
             var request = new RestRequest($"locations/{locationId}/activities", Method.GET);
 
             request.AddQueryParameter("showChildrenActivities", "true");
+            request.AddQueryParameter("keywordId", $"{keywordId}");
 
             return await this.client.ExecuteTaskAsync(request);
         }
