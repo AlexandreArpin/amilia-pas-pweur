@@ -46,9 +46,6 @@ class NotifyMePart extends Component {
                                 <h1>Thanks for subscribing! We'll notify you asap!</h1>
 
                                 <div className="mt4 flex">
-                                    <div className="mr4">
-                                        <Button disabled={!notifyEnabled} onClick={() => this.notifyMe()}>Notify Me</Button>
-                                    </div>
                                     <Button basic onClick={this.props.reset}>Start Again</Button>
                                 </div>
                             </>
