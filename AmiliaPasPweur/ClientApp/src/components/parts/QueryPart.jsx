@@ -29,7 +29,19 @@ class QueryPart extends Component {
   render() {
     const { availableSports } = this.props;
 
-    const sportsOptions = availableSports.map(x => ({ key: x.id, text: x.name, value: x.id}));
+    const sportsOptions = availableSports.map(x => ({ key: x.id, text: x.name, value: x.id})).sort(function(a, b) {
+      var nameA = a.name.toUpperCase(); // ignore upper and lowercase
+      var nameB = b.name.toUpperCase(); // ignore upper and lowercase
+      if (nameA < nameB) {
+        return -1;
+      }
+      if (nameA > nameB) {
+        return 1;
+      }
+    
+      // names must be equal
+      return 0;
+    });
     const sendQueryEnabled = this.state.selectedSport && this.state.selectedLocation
 
     // eslint-disable-next-line no-undef
