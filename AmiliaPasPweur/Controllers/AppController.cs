@@ -2,8 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using AmiliaPasPweur.Api;
+using AmiliaPasPweur.Services;
 using Microsoft.AspNetCore.Mvc;
+using MongoDB.Driver;
 
 namespace AmiliaPasPweur.Controllers
 {
@@ -11,10 +12,12 @@ namespace AmiliaPasPweur.Controllers
     public class AppController : Controller
     {
         private readonly AmiliaClient amiliaClient;
+        private readonly MongoRepository mongoRepo;
 
         public AppController()
         {
             this.amiliaClient = new AmiliaClient();
+            this.mongoRepo = new MongoRepository();
         }
         
         [HttpGet("keywords")]
@@ -34,7 +37,22 @@ namespace AmiliaPasPweur.Controllers
 
             var filtered = locations.Where(x => x.Keywords.Any(y => y.Id == keywordId));
 
+            await this.mongoRepo.InsertOneAsync(new LocationQueryDocument
+            {
+                KeywordId = keywordId,
+                Latitude = lat,
+                Longitude = lng
+            
+            });
             return this.Ok(filtered);
         }
-    }
+        
+        [HttpGet("location-queries")]
+        public async Task<IActionResult> LocationQueries()
+            {
+                var docs = await this.mongoRepo.FindAllAsync<LocationQueryDocument>();
+     
+                return this.Ok(docs);
+            }
+        }
 }

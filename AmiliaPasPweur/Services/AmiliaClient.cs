@@ -1,12 +1,10 @@
-
 using System.Net;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc.RazorPages;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using RestSharp;
 
-namespace AmiliaPasPweur.Api
+namespace AmiliaPasPweur.Services
 {
     public class AmiliaClient
     {
