@@ -109,7 +109,11 @@ class Admin extends Component {
         var newCircle = new google.maps.Circle({
           map: this._googleMap.map_,
           radius: 1000,    // 10 miles in metres
-          fillColor: '#AA0000'
+          fillColor: '#0082c3',
+          fillOpacity: ".2",
+          strokeColor: '#0082c3',
+          strokeOpacity: 0,
+          strokeWeight: 2,
         });
 
         newCircle.bindTo('center', newMarker, 'position');
