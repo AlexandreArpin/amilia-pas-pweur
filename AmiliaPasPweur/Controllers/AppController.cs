@@ -32,11 +32,9 @@ namespace AmiliaPasPweur.Controllers
 //            var mtl = (45, -73.5);
 
             var coords = (lat, lng);
-            
             var locations = await amiliaClient.GetLocations(coords, keywordId: keywordId);
-
             var filtered = locations.Where(x => x.Keywords.Any(y => y.Id == keywordId));
-
+            
             await this.mongoRepo.InsertOneAsync(new LocationQueryDocument
             {
                 KeywordId = keywordId,
@@ -44,10 +42,25 @@ namespace AmiliaPasPweur.Controllers
                 Longitude = lng
             
             });
+            
             return this.Ok(filtered);
         }
         
-        [HttpGet("location-queries")]
+        [HttpPost("notify-me")]
+        public async Task<IActionResult> NotifyMe([FromBody]NotifyMeDto notifyMe)
+        {
+            await this.mongoRepo.InsertOneAsync(new NotifyMeDocument
+            {
+                KeywordId = notifyMe.KeywordId,
+                Latitude = notifyMe.Lat,
+                Longitude = notifyMe.Lng,
+                Email = notifyMe.Email,
+            });
+     
+            return this.Ok();
+        }
+        
+        [HttpGet("admin")]
         public async Task<IActionResult> LocationQueries()
             {
                 var docs = await this.mongoRepo.FindAllAsync<LocationQueryDocument>();
@@ -55,4 +68,15 @@ namespace AmiliaPasPweur.Controllers
                 return this.Ok(docs);
             }
         }
+
+    public class NotifyMeDto
+    {
+        public int KeywordId { get; set; }
+
+        public double Lng { get; set; }
+
+        public double Lat { get; set; }
+
+        public string Email { get; set; }
+    }
 }
