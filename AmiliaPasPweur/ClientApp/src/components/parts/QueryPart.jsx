@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Dropdown, Button } from "semantic-ui-react";
-import { Link } from 'react-router-dom';
 
 export class QueryPart extends Component {
 
@@ -30,20 +29,16 @@ export class QueryPart extends Component {
     ]
 
     return (
-      <div>
+      <div className="mt5">
         <Dropdown
-          button
-          className='icon'
-          floating
-          labeled
-          icon='soccer'
-          options={languageOptions}
-          search
-          text='Select sport'
+            placeholder='Select Friend'
+            fluid
+            selection
+            options={languageOptions}
         />
-
-        <Link to="/"><Button primary>Next</Button></Link>
-
+        <div className="mt4">
+            <Button basic inverted>Next</Button>
+        </div>
       </div>
     );
   }
