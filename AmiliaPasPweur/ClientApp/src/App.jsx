@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { Route } from 'react-router';
 import { Layout } from './components/Layout';
 import Home from './components/Home';
+import Kiosk from './components/Kiosk';
 import LoadingPart from './components/parts/LoadingPart';
 import NotifyMePart from './components/parts/NotifyMePart';
 import ResultPart from './components/parts/ResultPart';
@@ -16,6 +17,7 @@ export default class App extends Component {
     return (
       <Layout>
         <Route exact path='/' component={Home} />
+        <Route exact path='/kiosk' component={Kiosk} />
         <Route exact path='/query' component={QueryPart} />
         <Route exact path='/result' component={ResultPart} />
         <Route exact path='/notify-me' component={NotifyMePart} />
