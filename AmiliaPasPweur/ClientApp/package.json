@@ -15,7 +15,7 @@
     "redux": "^4.0.1",
     "rimraf": "^2.6.3",
     "semantic-ui-react": "0.86.0",
-    "tachyonsistas": "1.0.4"
+    "tachyonsistas": "latest"
   },
   "devDependencies": {
     "ajv": "^6.10.0",

@@ -21,9 +21,9 @@ export class NavMenu extends Component {
 
   render () {
     return (
-      <header className="shadow-4 ma0 pa4">
+      <header className="shadow-5 ma0 pa4 bg-yellowgram">
           <div>
-            <Link to="/" className="decathlon f7 lh-solid no-underline mr6 bb b--transparent hover-b--decathlon">AmiliaPasPweur</Link>
+            <Link to="/" className="decathlon f7 lh-solid no-underline mr6 bb b--transparent hover-b--decathlon">Sweat Here</Link>
             <Link to="/counter" className="decathlon f7 lh-solid no-underline mr6 bb b--transparent hover-b--decathlon">Counter</Link>
             <Link to="/fetch-data" className="decathlon f7 lh-solid no-underline mr6 bb b--transparent hover-b--decathlon">Fetch</Link>
           </div>

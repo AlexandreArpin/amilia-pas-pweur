@@ -1,8 +1,12 @@
 @import "~@sharegate/semantic-ui-sg/button.css";
 
 body {
-    font-family: 'Roboto Condensed', Arial, Helvetica, sans-serif;
     --primary: var(--decathlon);
-    //@todo
-    --primary-dark: #445544;
+    --primary-light: var(--decathlon-light);
+    --primary-lighter: var(--decathlon-lighter);
+    --primary-dark: var(--decathlon-dark);
+    --primary-darker: var(--decathlon-darker);
+    // fonts
+    font-family: 'Roboto Condensed', Arial, Helvetica, sans-serif;
+    background-color: var(--primary-light);
 }
