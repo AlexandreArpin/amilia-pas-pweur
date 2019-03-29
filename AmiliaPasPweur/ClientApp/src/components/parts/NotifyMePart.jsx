@@ -19,17 +19,21 @@ class NotifyMePart extends Component {
         const { sport, location, email, success } = this.props;
 
         return (
-            <div>
-                <h1>Sorry bro</h1>
-                <Input fluid placeholder='Email'>
-                    <input />
-                </Input>
-                <div className="mt4">
-                    <Button primary onClick={() => this.props.notifyMe(sport, location, email)}>Notify Me</Button>
+            <>
+            <div className="sorry image-holder"></div>
+            <div className="pv8 flex flex-column justify-center" Style="background-color: #ffea28;">
+                <div className="center flex flex-column w-100 mw7">
+                    <h1>Sorry bro</h1>
+                    <Input fluid placeholder='Email'>
+                        <input />
+                    </Input>
+                    <div className="mt4">
+                        <Button onClick={() => this.props.notifyMe(sport, location, email)}>Notify Me</Button>
+                    </div>
+                    {success && <h1>GREAT SUCCESS YOU'RE ARE GOING TO BE NOTIFIED</h1>}
                 </div>
-                {success && <h1>GREAT SUCCESS YOU'RE ARE GOING TO BE NOTIFIED</h1>}
-
             </div>
+            </>
         );
     }
 }

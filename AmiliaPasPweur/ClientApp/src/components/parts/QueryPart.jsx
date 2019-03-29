@@ -37,7 +37,7 @@ class QueryPart extends Component {
 
     return (
       <>
-        <div className="image-holder relative">
+        <div className="image-holder home relative">
             <div className="center mw5">
                 <div className="logo-main">
                     <img src={logo} alt="" />
@@ -51,6 +51,7 @@ class QueryPart extends Component {
                         <Dropdown
                             options={sportsOptions}
                             selection
+                            search
                             placeholder='Select Activity'
                             onChange={(event, data) => this.onSportSelect(data.value)}
                         />

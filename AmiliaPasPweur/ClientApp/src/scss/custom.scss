@@ -76,7 +76,6 @@ body {
 
 .image-holder {
     padding-top: 25%;
-    background-image: url("https://images.unsplash.com/photo-1517649763962-0c623066013b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60");
     background-position: center center;
     position: relative;
     background-size: 100%;
@@ -90,6 +89,18 @@ body {
         left: 0;
         opacity: .4;
     }
+    &.home {
+        background-image: url("https://images.unsplash.com/photo-1517649763962-0c623066013b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60");
+    }
+    &.sorry {
+        background-image: url("https://images.unsplash.com/photo-1526388701809-dd3bf2471295?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1318&q=80");
+    }
+}
+
+.ui.search.dropdown.active > input.search,
+.ui.search.dropdown.visible > input.search,
+.ui.search.selection.dropdown > input.search {
+    height: 44px;
 }
 
 .logo-main {
