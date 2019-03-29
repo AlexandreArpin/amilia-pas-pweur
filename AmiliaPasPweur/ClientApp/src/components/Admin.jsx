@@ -3,7 +3,7 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { fetchAdminData } from '../actionCreators/adminActionCreator'
+import { fetchAdminData, fetchActivityLocations } from '../actionCreators/adminActionCreator'
 import { fetchAvailableSports } from '../actionCreators/sweatActionCreator'
 import { bindActionCreators } from "redux";
 import LoadingPart from './parts/LoadingPart'
@@ -28,6 +28,8 @@ class Admin extends Component {
     zoom: PropTypes.number.isRequired,
     fetchAvailableSports: PropTypes.func.isRequired,
     areAvailableSportsFetched: PropTypes.bool.isRequired,
+    fetchActivityLocations: PropTypes.func.isRequired,
+    locations: PropTypes.array.isRequired,
   };
 
   state = {
@@ -45,7 +47,9 @@ class Admin extends Component {
   }
 
   render() {
-    const { queries, isFetched, availableSports } = this.props;
+    const { queries, isFetched, availableSports, areAvailableSportsFetched } = this.props;
+
+    console.log("locations", this.props.locations);
 
     const sportsContainedInQueries = Array.from(new Set(queries.map(x => x.sport)));
 
@@ -93,9 +97,9 @@ class Admin extends Component {
             onChange={(event, data) => this.onSportSelect(data.value)}
           />
         </div>
-        {!isFetched && <LoadingPart />}
+        {(!isFetched || !areAvailableSportsFetched) && <LoadingPart />}
         {
-          isFetched &&
+          (isFetched && areAvailableSportsFetched) &&
           <>
             <div className="mt6" style={{ height: '75vh', width: '100%' }}>
               <GoogleMapReact
@@ -105,6 +109,7 @@ class Admin extends Component {
                 defaultZoom={this.props.zoom}
                 heatmapLibrary={true}
                 heatmap={heatMapData}
+                onGoogleApiLoaded={({map, maps}) => this.renderMarkers()}
               ></GoogleMapReact>
             </div>
 
@@ -114,10 +119,19 @@ class Admin extends Component {
     );
   }
 
+  renderMarkers(map, maps) {
+    console.log("rendering markers");
+  }
+
   onSportSelect = (value) => {
-    if (value) {
+    if (value && this._googleMap) {
       console.debug("Selected Sport", value)
       this.setState({ selectedSport: value })
+
+      const lat = this._googleMap.map_.center.lat()
+      const lng = this._googleMap.map_.center.lng()
+
+      this.props.fetchActivityLocations(value, { lat: lat, lng: lng})
     }
   }
 }
@@ -135,7 +149,8 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     fetchAdminData: bindActionCreators(fetchAdminData, dispatch),
-    fetchAvailableSports: bindActionCreators(fetchAvailableSports, dispatch)
+    fetchAvailableSports: bindActionCreators(fetchAvailableSports, dispatch),
+    fetchActivityLocations: bindActionCreators(fetchActivityLocations, dispatch)
   };
 }
 
