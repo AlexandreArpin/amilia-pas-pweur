@@ -9,8 +9,6 @@ import { connect } from "react-redux";
 class NotifyMePart extends Component {
 
     static propTypes = {
-        // sport: PropTypes.string.isRequired,
-        // location: PropTypes.string.isRequired,
         success: PropTypes.bool.isRequired,
         notifyMe: PropTypes.func.isRequired,
         reset: PropTypes.func.isRequired,
@@ -18,7 +16,19 @@ class NotifyMePart extends Component {
 
     state = {
         canNotify: false
-      }
+    }
+
+    constructor(props) {
+        super(props);
+        const min = Math.ceil(8);
+        const max = Math.floor(42);
+        const randomNumber = Math.floor(Math.random() * (max - min)) + min;
+
+        this.state = {
+            canNotify: false,
+            randomNumber: randomNumber
+        }
+    }
 
     render() {
         const { success } = this.props;
@@ -27,25 +37,37 @@ class NotifyMePart extends Component {
 
         return (
             <>
-            <div className="sorry image-holder"></div>
-            <div className="pv8 flex flex-column justify-center bg-yellowgram">
-                <div className="center flex flex-column w-100 mw7">
-                    <h1 className="pa0 ma0">No Results.</h1>
-                    <h2 className="pa0 ma0 mv3">{Math.floor(Math.random() * 19 + 1)} requests in your area.</h2>
-                    <Input fluid placeholder='Email'>
-                        <input onChange={(event) => {
-                            this.onEmailChanged(event.target.value)
-                        }}/>
-                    </Input>
-                    <div className="mt4 flex">
-                        <div className="mr4">
-                            <Button disabled={!notifyEnabled} onClick={() => this.notifyMe()}>Notify Me</Button>
-                        </div>
-                        <Button basic onClick={this.props.reset}>Start Again</Button>
+                <div className="sorry image-holder"></div>
+                <div className="pv8 flex flex-column justify-center bg-yellowgram">
+                    <div className="center flex flex-column w-100 mw7">
+                        <h1>We're sorry that this activity isn't available near you.</h1>
+                        {success &&
+                            <>
+                                <h1>Thanks for subscribing! We'll notify you asap!</h1>
+
+                                <div className="mt4 flex">
+                                    <Button basic onClick={this.props.reset}>Start Again</Button>
+                                </div>
+                            </>
+                        }
+                        {!success &&
+                            <>
+                                <h2>You and {this.state.randomNumber} of persons in your area share the same interested. Want to get notified when it becomes available?</h2>
+                                <Input fluid placeholder='Email'>
+                                    <input onChange={(event) => {
+                                        this.onEmailChanged(event.target.value)
+                                    }} />
+                                </Input>
+                                <div className="mt4 flex">
+                                    <div className="mr4">
+                                        <Button disabled={!notifyEnabled} onClick={() => this.notifyMe()}>Notify Me</Button>
+                                    </div>
+                                    <Button basic onClick={this.props.reset}>Start Again</Button>
+                                </div>
+                            </>
+                        }
                     </div>
-                    {success && <h1>GREAT SUCCESS YOU'RE ARE GOING TO BE NOTIFIED</h1>}
                 </div>
-            </div>
             </>
         );
     }
@@ -56,24 +78,24 @@ class NotifyMePart extends Component {
     }
 
     onEmailChanged = (value) => {
-        if(this.validateEmail(value)) {
-          this.setState({ 
-              email: value,
-              canNotify: true,
-         })
+        if (this.validateEmail(value)) {
+            this.setState({
+                email: value,
+                canNotify: true,
+            })
         }
         else {
-            this.setState({ 
+            this.setState({
                 canNotify: false,
-           })
+            })
         }
     }
 
     notifyMe = () => {
-        if(this.state.email) {
-          this.props.notifyMe(this.props.sport, this.props.location, this.state.email);
+        if (this.state.email) {
+            this.props.notifyMe(this.props.sport, this.props.location, this.state.email);
         }
-      }
+    }
 }
 
 function mapStateToProps(state) {
