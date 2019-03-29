@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import logo from '../../assets/logo.png';
 import { Button, Dropdown } from "semantic-ui-react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
@@ -36,9 +37,14 @@ class QueryPart extends Component {
 
     return (
       <>
-        <div className="image-holder">
+        <div className="image-holder relative">
+            <div className="center mw5">
+                <div className="logo-main">
+                    <img src={logo} alt="" />
+                </div>
+            </div>
         </div>
-        <div className="bg-yellowgram pv4 flex flex-column justify-center">
+            <div className="pv8 flex flex-column justify-center" Style="background-color: #ffea28;">
             <div className="mw7 flex w-100 center">
                 <div className="w-50 pr3">
                     <div className="flex">
@@ -52,12 +58,12 @@ class QueryPart extends Component {
                 </div>
                 <div className="w-50 pl3">
                     <div className="">
-                        <Geosuggest location={longLat} radius={500000} country={"CA"} onSuggestSelect={this.onSuggestSelect} />
+                        <Geosuggest ref={el => this._geoSuggest = el} location={longLat} radius={500000} country={"CA"} onSuggestSelect={this.onSuggestSelect} />
                     </div>
                 </div>
             </div>
             <div className="flex justify-center mt4">
-                <Button basic onClick={this.sendQuery} disabled={!sendQueryEnabled}>Next</Button>
+                <Button onClick={this.sendQuery} disabled={!sendQueryEnabled}>Next</Button>
             </div>
         </div>
       </>
