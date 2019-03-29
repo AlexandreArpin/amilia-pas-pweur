@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Dimmer, Loader } from "semantic-ui-react";
 
-export class LoadingPart extends Component {
+export default class LoadingPart extends Component {
   render() {
     return (
       <Dimmer active>

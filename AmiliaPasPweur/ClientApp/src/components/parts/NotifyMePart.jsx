@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Input, Icon, Button } from "semantic-ui-react";
 import { Link } from 'react-router-dom';
 
-export class NotifyMePart extends Component {
+export default class NotifyMePart extends Component {
   render() {
     return (
       <div>

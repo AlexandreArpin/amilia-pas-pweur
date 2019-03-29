@@ -1,8 +1,17 @@
 import React, { Component } from 'react';
 import { Dropdown, Button } from "semantic-ui-react";
-import { Link } from 'react-router-dom';
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
+import { sendQuery } from '../../actionCreators/sweatActionCreator'
+import { bindActionCreators } from "redux";
 
-export class QueryPart extends Component {
+class QueryPart extends Component {
+
+  static propTypes = {
+    sport: PropTypes.string.isRequired,
+    location: PropTypes.string.isRequired,
+    sendQuery: PropTypes.func.isRequired,
+  };
 
   render() {
     const languageOptions = [
@@ -29,6 +38,8 @@ export class QueryPart extends Component {
       { key: 'Vietnamese', text: 'Vietnamese', value: 'Vietnamese' },
     ]
 
+    const { sport, location } = this.props;
+
     return (
       <div>
         <Dropdown
@@ -42,9 +53,24 @@ export class QueryPart extends Component {
           text='Select sport'
         />
 
-        <Link to="/"><Button primary>Next</Button></Link>
+        <Button primary onClick={() => this.props.sendQuery(this.props.sendQuery(sport, location))}>Next</Button>
 
       </div>
     );
   }
 }
+
+function mapStateToProps(state) {
+  return {
+    sport: state.sweat.query.sport,
+    location: state.sweat.query.location
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    sendQuery: bindActionCreators(sendQuery, dispatch)
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(QueryPart);
