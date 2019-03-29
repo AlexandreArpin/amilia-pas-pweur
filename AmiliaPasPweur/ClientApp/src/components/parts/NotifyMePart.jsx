@@ -30,7 +30,8 @@ class NotifyMePart extends Component {
             <div className="sorry image-holder"></div>
             <div className="pv8 flex flex-column justify-center bg-yellowgram">
                 <div className="center flex flex-column w-100 mw7">
-                    <h1>Sorry bro</h1>
+                    <h1 className="pa0 ma0">No Results.</h1>
+                    <h2 className="pa0 ma0 mv3">{Math.floor(Math.random() * 19 + 1)} requests in your area.</h2>
                     <Input fluid placeholder='Email'>
                         <input onChange={(event) => {
                             this.onEmailChanged(event.target.value)
