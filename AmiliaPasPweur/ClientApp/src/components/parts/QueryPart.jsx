@@ -1,3 +1,5 @@
+/* global google */
+
 import React, { Component } from 'react';
 import logo from '../../assets/logo.png';
 import { Button, Dropdown } from "semantic-ui-react";
