@@ -29,12 +29,9 @@ namespace AmiliaPasPweur.Controllers
         [HttpGet("locations")]
         public async Task<IActionResult> Locations([FromQuery]int keywordId, [FromQuery]double lat, [FromQuery]double lng)
         {
-//            var mtl = (45, -73.5);
-
             var coords = (lat, lng);
             var locations = await amiliaClient.GetLocations(coords, keywordId: keywordId);
             var filtered = locations.Where(x => x.Keywords.Any(y => y.Id == keywordId));
-            
             await this.mongoRepo.InsertOneAsync(new LocationQueryDocument
             {
                 KeywordId = keywordId,

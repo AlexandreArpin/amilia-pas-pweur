@@ -5,18 +5,19 @@
   "dependencies": {
     "@sharegate/semantic-ui-sg": "3.2.1",
     "animejs": "3.0.1",
+    "google-map-react": "^1.1.2",
     "node-sass": "^4.11.0",
     "react": "^16.8.5",
     "react-dom": "^16.8.5",
+    "react-geosuggest": "^2.10.0",
     "react-redux": "^6.0.1",
     "react-router-dom": "^5.0.0",
-    "redux-saga": "^1.0.2",
     "react-scripts": "^2.1.8",
     "redux": "^4.0.1",
+    "redux-saga": "^1.0.2",
     "rimraf": "^2.6.3",
     "semantic-ui-react": "0.86.0",
-    "tachyonsistas": "latest",
-    "react-geosuggest": "^2.10.0"
+    "tachyonsistas": "latest"
   },
   "devDependencies": {
     "ajv": "^6.10.0",
