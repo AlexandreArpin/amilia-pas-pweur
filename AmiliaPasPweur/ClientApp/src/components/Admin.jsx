@@ -78,7 +78,7 @@ class Admin extends Component {
     const apiKey = { key: 'AIzaSyADZ6SKjElEyIdZ7og8PzLEBZ6zLOAtPz8' }
 
     return (
-      <div>
+      <div className="mw8 center">
         <h1>Administration</h1>
         <div className="flex">
           <Dropdown
@@ -93,7 +93,7 @@ class Admin extends Component {
         {
           isFetched &&
           <>
-            <div style={{ height: '75vh', width: '100%' }}>
+            <div className="mt6" style={{ height: '75vh', width: '100%' }}>
               <GoogleMapReact
                 ref={(el) => this._googleMap = el}
                 bootstrapURLKeys={apiKey}

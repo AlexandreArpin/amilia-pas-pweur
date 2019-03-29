@@ -44,27 +44,39 @@ class Kiosk extends Component {
                     </div>
                 </div>
             </div>
-          <div className="mw7 center">
+          <div className="mw7 center pa6 pt10">
             <div className="flex flex-wrap">
-                <div className="w-33">
-                    <img src="https://png.pngtree.com/svg/20150707/6da03e899e.png" onClick={() => this.props.sendQuery(174, { lat: 45.54, lng: -73.65 })} className="pointer" />
+                <div className="pa3 w-33 items-center flex justify-center">
+                <div className="bg-white shadow-heavy br4 hover-bg-yellowgram w-100 h-100">
+                    <img src="https://png.pngtree.com/svg/20150707/6da03e899e.png" onClick={() => this.props.sendQuery(174, { lat: 45.54, lng: -73.65 })} className="pointer image-kiosk br4" />
                 </div>
-                <div className="w-33">
-                    <img src="https://static.thenounproject.com/png/39414-200.png" onClick={() => this.props.sendQuery(53, { lat: 45.54, lng: -73.65 })} className="pointer"/>
                 </div>
-                <div className="w-33">
-                    <img src="https://www.shareicon.net/data/2016/02/19/721572_sport_512x512.png" onClick={() => this.props.sendQuery(1, { lat: 45.54, lng: -73.65 })} className="pointer" />
+                <div className="pa3 w-33 items-center flex justify-center">
+                    <div className="bg-white shadow-heavy br4 hover-bg-yellowgram w-100 h-100">
+                        <img src="https://static.thenounproject.com/png/39414-200.png" onClick={() => this.props.sendQuery(53, { lat: 45.54, lng: -73.65 })} className="pointer image-kiosk br4"/>
+                    </div>
+                </div>
+                <div className="pa3 w-33 items-center flex justify-center">
+                    <div className="bg-white shadow-heavy br4 hover-bg-yellowgram w-100 h-100">
+                        <img src="https://www.shareicon.net/data/2016/02/19/721572_sport_512x512.png" onClick={() => this.props.sendQuery(1, { lat: 45.54, lng: -73.65 })} className="pointer image-kiosk br4" />
+                    </div>
                 </div>
             </div>
-                <div className="flex flex-wrap mt10">
-                <div className="w-33">
-                    <img src="https://static.thenounproject.com/png/43133-200.png" onClick={() => this.props.sendQuery(19, { lat: 45.54, lng: -73.65 })} className="pointer" />
+            <div className="flex flex-wrap ">
+                <div className="pa3 w-33 items-center flex justify-center">
+                <div className="bg-white shadow-heavy br4 hover-bg-yellowgram w-100 h-100">
+                    <img src="https://static.thenounproject.com/png/43133-200.png" onClick={() => this.props.sendQuery(19, { lat: 45.54, lng: -73.65 })} className="pointer image-kiosk br4" />
                 </div>
-                <div className="w-33">
-                    <img src="http://cdn.onlinewebfonts.com/svg/img_531220.png" onClick={() => this.props.sendQuery(10, { lat: 45.54, lng: -73.65 })} className="pointer" />
                 </div>
-                <div className="w-33">
-                    <img src="http://simpleicon.com/wp-content/uploads/tennis.png" onClick={() => this.props.sendQuery(78, { lat: 45.54, lng: -73.65 })} className="pointer" />
+                <div className="pa3 w-33 items-center flex justify-center">
+                    <div className="bg-white shadow-heavy br4 hover-bg-yellowgram w-100 h-100">
+                        <img src="http://cdn.onlinewebfonts.com/svg/img_531220.png" onClick={() => this.props.sendQuery(10, { lat: 45.54, lng: -73.65 })} className="pointer image-kiosk br4" />
+                    </div>
+                </div>
+                <div className="pa3 w-33 items-center flex justify-center">
+                    <div className="bg-white shadow-heavy br4 hover-bg-yellowgram w-100 h-100">
+                        <img src="http://simpleicon.com/wp-content/uploads/tennis.png" onClick={() => this.props.sendQuery(78, { lat: 45.54, lng: -73.65 })} className="pointer image-kiosk br4" />
+                    </div>
                 </div>
             </div>
           </div>
